@@ -6,12 +6,14 @@ const PORT = process.env.PORT || 3001;
 const app = express();
 
 
-
-const routes = require('./routes/routes');
+require("./routes/html-routes")(app);
+require("./routes/routes")(app);
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.static('public'));
+app.use("/assets", express.static("./assets"));
+
 
 app.listen(PORT, () => {
   console.log(`API server now on port ${PORT}!`);
